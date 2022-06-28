@@ -1,5 +1,10 @@
 #Bandit Algorithm
 #UCB1
+
+from turtle import pu
+from Learner import * 
+import numpy as np
+
 class UCB_Learner(Learner):
     def __init__(self, n_arms):
         super().__init__(n_arms)

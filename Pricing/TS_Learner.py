@@ -1,5 +1,10 @@
 #Bandit Algorithm
 #Thompson Sampling
+
+from turtle import pu
+from Learner import * 
+import numpy as np
+
 class TS_Learner(Learner):
   """ 
   the TS Algorithm selects the arm to pull by sampling a value for each arm from a beta distribution, 
