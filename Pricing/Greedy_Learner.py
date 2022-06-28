@@ -1,4 +1,9 @@
 #Greedy Algorithm
+
+from turtle import pu
+from Learner import * 
+import numpy as np
+
 class Greedy_Learner(Learner):
   """
   The Greedy Learner selects the arm to pull by maximizing the expected reward array
