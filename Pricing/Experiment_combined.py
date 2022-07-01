@@ -76,7 +76,7 @@ adjacent_matrix = weighted_adjmatrix(g, list('12345'))
 
 # print(adjacent_matrix)
 T = 365  # simulation time horizon
-n_experiments = 50
+n_experiments = 10
 
 ts_reward_per_experiment = []
 ts_margin_per_experiment = []
@@ -118,19 +118,18 @@ for i in range(n_prods):
 
 #################### Execution ####################
 for i in range(n_experiments):
-    for pid in range(n_prods):
-        visited_products = [pid]
-        env = Environment(n_arms, products_customers[pid], products_margin[pid],
-                          products_conversion[pid])
+    for t in range(T):
         ts_learner = TS_Learner(n_arms)
         ucb_learner = UCB_Learner(n_arms)
         gr_learner = Greedy_Learner(n_arms)
-        for t in range(T):
+        for pid in range(n_prods):
+            visited_products = [pid]
             for j in range(n_prods):
+                env = Environment(n_arms, products_customers[j], products_margin[j],
+                                  products_conversion[j])
                 weight = adjacent_matrix[pid][j]
                 if j not in visited_products and weight > 0.0:
                     visited_products.append(j)
-
                 # Thompson Sampling Learner
                     ts_arm_pulled = ts_learner.pull_arm()
                     ts_margin = env.margin_mode(ts_arm_pulled, weight)
