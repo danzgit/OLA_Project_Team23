@@ -128,6 +128,7 @@ for i in range(n_experiments):
                 env = Environment(n_arms, products_customers[j], products_margin[j],
                                   products_conversion[j])
                 weight = adjacent_matrix[pid][j]
+                # condition to skip product if it was visited or has no weight
                 if j not in visited_products and weight > 0.0:
                     visited_products.append(j)
                 # Thompson Sampling Learner
