@@ -21,3 +21,15 @@ class Environment:
             reward = np.random.binomial(1, weight_edge * self.conv_rate1[
                 cust_class, pulled_arm])  # binomial probabilities using np used for reward value, 1 or 0
         return reward
+
+    def margin_agg_mode(self, pulled_arm, weight_edge):
+        tot_margin = 0
+        customers = np.random.binomial(self.n_customers * weight_edge, self.conv_rate1[
+            pulled_arm])  # binomial in range of n_customers of selected cust class
+        tot_margin += self.margin1[pulled_arm] * customers
+        return tot_margin
+
+    def reward_agg_mode(self, pulled_arm, weight_edge):  # ROUND METHOD
+        reward = np.random.binomial(1, weight_edge * self.conv_rate1[
+            pulled_arm])  # binomial probabilities using np used for reward value, 1 or 0
+        return reward
